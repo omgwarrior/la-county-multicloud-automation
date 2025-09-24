@@ -1,0 +1,27 @@
+---
+- name: Provision On-Prem Infrastructure (VMWare)
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_prompt:
+    - name: vcenter_user
+      prompt: "Enter vCenter username"
+      private: no
+    - name: vcenter_pass
+      prompt: "Enter vCenter password"
+      private: yes
+  tasks:
+    - name: Create a new VM from template
+      community.vmware.vmware_guest:
+        hostname: 'vcenter.example.com' # CHANGE THIS
+        username: '{{ vcenter_user }}'
+        password: '{{ vcenter_pass }}'
+        validate_certs: false
+        template: 'RHEL8-template'
+        name: 'new-app-vm01'
+        folder: '/Datacenter/VMs'
+        state: poweredon
+        cluster: 'Production-Cluster'
+        hardware:
+          memory_mb: 4096
+          num_cpus: 2

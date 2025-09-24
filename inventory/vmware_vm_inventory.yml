@@ -1,0 +1,4 @@
+---
+plugin: community.vmware.vmware_vm_inventory
+hostname: 'vcenter.example.com' # CHANGE THIS
+validate_certs: false

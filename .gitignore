@@ -1,0 +1,6 @@
+*.retry
+*.vault
+ansible.log
+pycache/
+*.pyc
+.DS_Store
